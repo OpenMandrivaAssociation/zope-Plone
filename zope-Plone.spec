@@ -1,5 +1,5 @@
-%define base_name   plone
-%define name        zope-%{base_name}
+%define Product     Plone
+%define name        zope-%{Product}
 %define version     3.0.1
 %define release     %mkrel 1
 %define zope_minver 2.10.4
@@ -14,7 +14,7 @@ Summary:    A user friendly and powerful open source Content Management System
 License:    GPL
 Group:      System/Servers
 URL:        http://plone.org/
-Source:     http://plone.googlecode.com/files/Plone-%{version}.tar.gz
+Source:     http://plone.googlecode.com/files/%{Product}-%{version}.tar.gz
 Requires:   python2.4-wicked
 Requires:   python2.4-imaging
 Requires:   python2.4-elementtree
@@ -96,7 +96,7 @@ NASA, Industrial Light and Magic and many others. Why? Because Python offers
 unprecedented programmer productivity.
 
 %prep
-%setup -q -n Plone-%{version}
+%setup -q -n %{Product}-%{version}
 
 %build
 # nothing to do here
