@@ -1,7 +1,7 @@
 %define Product     Plone
 %define name        zope-%{Product}
 %define version     3.0.4
-%define release     %mkrel 0
+%define release     %mkrel 1
 %define zope_minver 2.10.5
 
 %define zope_home      %{_prefix}/lib/zope
@@ -48,6 +48,7 @@ Requires:   zope-kupu >= 1.3.9
 Requires:   zope-ZopeVersionControl >= 0.3.4
 Requires:   zope-statusmessages >= 2.0.1
 Obsoletes:  zope-CMFPlone
+Provides:   zope-CMFPlone
 Suggests:   zope-PloneErrorReporting >= 1.0
 Suggests:   zope-CacheFu
 BuildArch:  noarch
