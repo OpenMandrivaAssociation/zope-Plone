@@ -1,7 +1,7 @@
 %define Product     Plone
 %define name        zope-%{Product}
 %define version     3.0.4
-%define release     %mkrel 1
+%define release     %mkrel 2
 %define zope_minver 2.10.5
 
 %define zope_home      %{_prefix}/lib/zope
@@ -19,34 +19,35 @@ Requires:   python2.4-wicked
 Requires:   python2.4-imaging
 Requires:   python2.4-elementtree
 Requires:   zope >= %{zope_minver}
-Requires:   zope-ATContentTypes >= 1.2.1
+Requires:   zope-ATContentTypes >= 1.2.3
 Requires:   zope-ATReferenceBrowserWidget >= 2.0.1
 Requires:   zope-AdvancedQuery >= 2.2
-Requires:   zope-Archetypes >= 1.5.2
+Requires:   zope-Archetypes >= 1.5.4
 Requires:   zope-CMF >= 2.1.0
-Requires:   zope-CMFDynamicViewFTI >= 3.0
-Requires:   zope-CMFFormController >= 2.1
-Requires:   zope-CMFPlacefulWorkflow >= 1.2.0
-Requires:   zope-CMFQuickInstallerTool >= 2.0.3
-Requires:   zope-CMFDiffTool >= 0.3.4
-Requires:   zope-CMFEditions >= 1.1.1
+Requires:   zope-CMFDiffTool >= 0.3.5
+Requires:   zope-CMFDynamicViewFTI >= 3.0.1
+Requires:   zope-CMFEditions >= 1.1.4
+Requires:   zope-CMFFormController >= 2.1.1
+Requires:   zope-CMFPlacefulWorkflow >= 1.2.1
+Requires:   zope-CMFQuickInstallerTool >= 2.0.4
+Requires:   zope-CMFTestCase >= 0.9.6
 Requires:   zope-ExtendedPathIndex >= 2.4
 Requires:   zope-ExternalEditor >= 0.9.3
 Requires:   zope-GroupUserFolder >= 3.55
-Requires:   zope-NuPlone >= 0.9.2
-Requires:   zope-PasswordResetTool >= 1.0
-Requires:   zope-PlacelessTranslationService >= 1.4.4
-Requires:   zope-PloneLanguageTool >= 2.0
-Requires:   zope-PlonePAS >= 3.0
+Requires:   zope-NuPlone >= 0.9.3
+Requires:   zope-PasswordResetTool >= 1.0.2
+Requires:   zope-PlacelessTranslationService >= 1.4.6
+Requires:   zope-PloneLanguageTool >= 2.0.1
+Requires:   zope-PlonePAS >= 3.1
 Requires:   zope-PloneTestCase >= 0.9.6
-Requires:   zope-PloneTranslations >= 3.0.5
-Requires:   zope-PluggableAuthService >= 1.5.1
+Requires:   zope-PloneTranslations >= 3.0.9
+Requires:   zope-PluggableAuthService >= 1.5.2
 Requires:   zope-PluginRegistry >= 1.1.2
 Requires:   zope-ResourceRegistries >= 1.4.1
 Requires:   zope-SecureMailHost >= 1.1
-Requires:   zope-kupu >= 1.3.9
 Requires:   zope-ZopeVersionControl >= 0.3.4
-Requires:   zope-statusmessages >= 2.0.1
+Requires:   zope-kupu >= 1.4.6
+Requires:   zope-statusmessages >= 3.0.3
 Obsoletes:  zope-CMFPlone
 Provides:   zope-CMFPlone
 Suggests:   zope-PloneErrorReporting >= 1.0
