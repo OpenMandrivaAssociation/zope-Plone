@@ -53,7 +53,6 @@ Provides:   zope-CMFPlone
 Suggests:   zope-PloneErrorReporting >= 1.0
 Suggests:   zope-CacheFu
 BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 Plone is powerful and flexible. It is ideal as an intranet and
