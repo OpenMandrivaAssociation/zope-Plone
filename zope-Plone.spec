@@ -1,7 +1,7 @@
 %define Product     Plone
 %define name        zope-%{Product}
 %define version     3.0.4
-%define release     %mkrel 2
+%define release     %mkrel 3
 %define zope_minver 2.10.5
 
 %define zope_home      %{_prefix}/lib/zope
@@ -35,7 +35,7 @@ Requires:   zope-ExtendedPathIndex >= 2.4
 Requires:   zope-ExternalEditor >= 0.9.3
 Requires:   zope-GroupUserFolder >= 3.55
 Requires:   zope-NuPlone >= 0.9.3
-Requires:   zope-PasswordResetTool >= 1.0.2
+Requires:   zope-PasswordResetTool >= 1.0
 Requires:   zope-PlacelessTranslationService >= 1.4.6
 Requires:   zope-PloneLanguageTool >= 2.0.1
 Requires:   zope-PlonePAS >= 3.1
