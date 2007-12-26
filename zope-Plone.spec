@@ -1,7 +1,7 @@
 %define Product     Plone
 %define name        zope-%{Product}
 %define version     3.0.4
-%define release     %mkrel 3
+%define release     %mkrel 4
 %define zope_minver 2.10.5
 
 %define zope_home      %{_prefix}/lib/zope
@@ -15,45 +15,83 @@ License:    GPL
 Group:      System/Servers
 URL:        http://plone.org/
 Source:     http://plone.googlecode.com/files/%{Product}-%{version}.tar.gz
+BuildArch:  noarch
 Requires:   python2.4-wicked
 Requires:   python2.4-imaging
 Requires:   python2.4-elementtree
 Requires:   zope >= %{zope_minver}
-Requires:   zope-ATContentTypes >= 1.2.3
-Requires:   zope-ATReferenceBrowserWidget >= 2.0.1
-Requires:   zope-AdvancedQuery >= 2.2
-Requires:   zope-Archetypes >= 1.5.4
-Requires:   zope-CMF >= 2.1.0
-Requires:   zope-CMFDiffTool >= 0.3.5
-Requires:   zope-CMFDynamicViewFTI >= 3.0.1
-Requires:   zope-CMFEditions >= 1.1.4
-Requires:   zope-CMFFormController >= 2.1.1
-Requires:   zope-CMFPlacefulWorkflow >= 1.2.1
-Requires:   zope-CMFQuickInstallerTool >= 2.0.4
-Requires:   zope-CMFTestCase >= 0.9.6
-Requires:   zope-ExtendedPathIndex >= 2.4
-Requires:   zope-ExternalEditor >= 0.9.3
-Requires:   zope-GroupUserFolder >= 3.55
-Requires:   zope-NuPlone >= 0.9.3
-Requires:   zope-PasswordResetTool >= 1.0
-Requires:   zope-PlacelessTranslationService >= 1.4.6
-Requires:   zope-PloneLanguageTool >= 2.0.1
-Requires:   zope-PlonePAS >= 3.1
-Requires:   zope-PloneTestCase >= 0.9.6
-Requires:   zope-PloneTranslations >= 3.0.9
-Requires:   zope-PluggableAuthService >= 1.5.2
-Requires:   zope-PluginRegistry >= 1.1.2
-Requires:   zope-ResourceRegistries >= 1.4.1
-Requires:   zope-SecureMailHost >= 1.1
-Requires:   zope-ZopeVersionControl >= 0.3.4
-Requires:   zope-kupu >= 1.4.6
-Requires:   zope-statusmessages >= 3.0.3
+Obsoletes:  zope-AdvancedQuery
+Provides:   zope-AdvancedQuery
+Obsoletes:  zope-Archetypes
+Provides:   zope-Archetypes
+Obsoletes:  zope-ATContentTypes
+Provides:   zope-ATContentTypes
+Obsoletes:  zope-ATReferenceBrowserWidget
+Provides:   zope-ATReferenceBrowserWidget
+Obsoletes:  zope-CMF
+Provides:   zope-CMF
+Obsoletes:  zope-CMFDiffTool
+Provides:   zope-CMFDiffTool
+Obsoletes:  zope-CMFDynamicViewFTI
+Provides:   zope-CMFDynamicViewFTI
+Obsoletes:  zope-CMFEditions
+Provides:   zope-CMFEditions
+Obsoletes:  zope-CMFFormController
+Provides:   zope-CMFFormController
+Obsoletes:  zope-CMFPlacefulWorkflow
+Provides:   zope-CMFPlacefulWorkflow
+Obsoletes:  zope-CMFQuickInstallerTool
+Provides:   zope-CMFQuickInstallerTool
+Obsoletes:  zope-CMFTestCase
+Provides:   zope-CMFTestCase
+Obsoletes:  zope-ExtendedPathIndex
+Provides:   zope-ExtendedPathIndex
+Obsoletes:  zope-CMFTestCase
+Provides:   zope-CMFTestCase
+Obsoletes:  zope-ExternalEditor
+Provides:   zope-ExternalEditor
+Obsoletes:  zope-GenericSetup
+Provides:   zope-GenericSetup
+Obsoletes:  zope-GroupUserFolder
+Provides:   zope-GroupUserFolder
+Obsoletes:  zope-kupu
+Provides:   zope-kupu
+Obsoletes:  zope-NuPlone
+Provides:   zope-NuPlone
+Obsoletes:  zope-PasswordResetTool
+Provides:   zope-PasswordResetTool
+Obsoletes:  zope-PlacelessTranslationService
+Provides:   zope-PlacelessTranslationService
+Obsoletes:  zope-PloneBase
+Provides:   zope-PloneBase
+Obsoletes:  zope-PloneLanguageTool
+Provides:   zope-PloneLanguageTool
+Obsoletes:  zope-PlonePAS
+Provides:   zope-PlonePAS
+Obsoletes:  zope-PloneTestCase
+Provides:   zope-PloneTestCase
+Obsoletes:  zope-PloneTranslations
+Provides:   zope-PloneTranslations
+Obsoletes:  zope-PluggableAuthService
+Provides:   zope-PluggableAuthService
+Obsoletes:  zope-PluginRegistry
+Provides:   zope-PluginRegistry
+Obsoletes:  zope-ResourceRegistries
+Provides:   zope-ResourceRegistries
+Obsoletes:  zope-SecureMailHost
+Provides:   zope-SecureMailHost
+Obsoletes:  zope-statusmessages
+Provides:   zope-statusmessages
+Obsoletes:  zope-ZopeVersionControl
+Provides:   zope-ZopeVersionControl
 Obsoletes:  zope-CMFPlone
 Provides:   zope-CMFPlone
 Suggests:   zope-PloneErrorReporting >= 1.0
 Suggests:   zope-CacheFu
-BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
+%if %{mdkversion} <= 200800
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
+%endif
+
 
 %description
 Plone is powerful and flexible. It is ideal as an intranet and
@@ -103,19 +141,17 @@ productivity.
 %prep
 %setup -q -n %{Product}-%{version}
 
+find . -type d \( -name CVS -o -name .svn \) -print0 | xargs -0 rm -rf
+find . -type f \( -name .cvsignore -name '*~' \) -print0 | xargs -0 rm -f
+
 %build
 # nothing to do here
 
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/%{software_home}/Products
-# copy only CMFPlone folder
-%{__cp} -a Products/CMFPlone %{buildroot}%{software_home}/Products/
-%{__cp} -a lib/python/archetypes \
-    lib/python/five \
-    lib/python/kss \
-    lib/python/plone \
-    %{buildroot}%{software_home}
+%{__cp} -a Products/* %{buildroot}%{software_home}/Products/
+%{__cp} -a lib/python/* %{buildroot}%{software_home}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -134,8 +170,8 @@ fi
 %defattr(-,root,root)
 %doc INSTALL.txt README.txt RELEASENOTES.txt
 %{software_home}/Products/*
-%{software_home}/plone
-%{software_home}/kss
 %{software_home}/archetypes
 %{software_home}/five
-
+%{software_home}/kss
+%{software_home}/plone
+%{software_home}/wicked
