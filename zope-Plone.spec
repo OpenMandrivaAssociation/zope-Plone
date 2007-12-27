@@ -1,7 +1,7 @@
 %define Product     Plone
 %define name        zope-%{Product}
 %define version     3.0.4
-%define release     %mkrel 4
+%define release     %mkrel 5
 %define zope_minver 2.10.5
 
 %define zope_home      %{_prefix}/lib/zope
@@ -88,10 +88,10 @@ Obsoletes:  zope-CMFPlone
 Provides:   zope-CMFPlone
 Suggests:   zope-PloneErrorReporting >= 1.0
 Suggests:   zope-CacheFu
+BuildRequires: gettext
 %if %{mdkversion} <= 200800
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
 %endif
-
 
 %description
 Plone is powerful and flexible. It is ideal as an intranet and
@@ -150,6 +150,18 @@ find . -type f \( -name .cvsignore -name '*~' \) -print0 | xargs -0 rm -f
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/%{software_home}/Products
+
+
+# convert .po files
+for file_po in `find ./ -name "*.po" -type f`; do
+    file_dir=${file_po#./}
+    file_dir=${file_dir%/*}
+    file_mo=${file_po##*/}
+    file_mo=${file_mo%.po}.mo
+    echo "Converting $file_po to $file_dir/$file_mo..."
+    msgfmt -o $file_dir/$file_mo $file_po --no-hash || :
+done
+
 %{__cp} -a Products/* %{buildroot}%{software_home}/Products/
 %{__cp} -a lib/python/* %{buildroot}%{software_home}
 
