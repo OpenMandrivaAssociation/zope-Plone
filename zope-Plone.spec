@@ -1,7 +1,7 @@
 %define Product     Plone
 %define name        zope-%{Product}
 %define version     3.0.5
-%define release     %mkrel 1
+%define release     %mkrel 2
 %define zope_minver 2.10.5
 
 %define zope_home      %{_prefix}/lib/zope
@@ -15,6 +15,7 @@ License:    GPL
 Group:      System/Servers
 URL:        http://plone.org/
 Source:     http://plone.googlecode.com/files/%{Product}-%{version}.tar.gz
+Patch0:	    Plone-3.0.5-i18n.app.102.patch
 BuildArch:  noarch
 Requires:   python2.4-wicked
 Requires:   python2.4-imaging
@@ -140,6 +141,7 @@ productivity.
 
 %prep
 %setup -q -n %{Product}-%{version}
+%patch0 -p1
 
 find . -type d \( -name CVS -o -name .svn \) -print0 | xargs -0 rm -rf
 find . -type f \( -name .cvsignore -name '*~' \) -print0 | xargs -0 rm -f
