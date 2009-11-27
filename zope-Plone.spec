@@ -1,8 +1,8 @@
 %define Product     Plone
 %define name        zope-%{Product}
-%define version     3.0.6
-%define release     %mkrel 6
-%define zope_minver 2.10.5
+%define version     3.1.7
+%define release     %mkrel 1
+%define zope_minver 2.10.6
 
 %define zope_home      %{_prefix}/lib/zope
 %define software_home  %{zope_home}/lib/python
@@ -89,9 +89,7 @@ Provides:   zope-CMFPlone
 Suggests:   zope-PloneErrorReporting >= 1.0
 Suggests:   zope-CacheFu
 BuildRequires: gettext
-%if %{mdkversion} <= 200800
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
-%endif
+BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 Plone is powerful and flexible. It is ideal as an intranet and
@@ -187,3 +185,4 @@ fi
 %{software_home}/kss
 %{software_home}/plone
 %{software_home}/wicked
+%{software_home}/borg
