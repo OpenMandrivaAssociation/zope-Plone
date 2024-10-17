@@ -13,7 +13,7 @@ Release:    %{release}
 Summary:    A user friendly and powerful open source Content Management System
 License:    GPL
 Group:      System/Servers
-URL:        http://plone.org/
+URL:        https://plone.org/
 Source:     http://plone.googlecode.com/files/%{Product}-%{version}.tar.gz
 BuildArch:  noarch
 Requires:   python2.4-wicked
